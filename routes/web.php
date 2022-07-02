@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\TodoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [TodoController::class, 'index']);
+
+Route::get('todos/create', [TodoController::class, 'create']);
+
+Route::post('/todos', [TodoController::class, 'store']);
+
+Route::get('/todos/{todo}/edit', [TodoController::class, 'edit']);
+
+Route::put('/todos/{todo}', [TodoController::class, 'update']);
+
+Route::get('/todos/{todo}/delete', [TodoController::class, 'delete']);
